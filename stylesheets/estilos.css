@@ -144,6 +144,7 @@ img{
         background-repeat:no-repeat;
         width:31px;
         float:right;
+/*		z-index:1;*/
       }
       
       .close{
@@ -229,4 +230,11 @@ z-index: 1000 !important;
 .wml-copyright {
   /* We are showing our own localized copyright */
   display: none !important;
+}
+.leaflet-control-zoom.leaflet-bar.leaflet-control{
+	margin-top:110px;
+	margin-left:0px;
+}
+.leaflet-routing-container.leaflet-bar.leaflet-control{
+	margin-top:70px;
 }

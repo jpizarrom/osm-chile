@@ -11,13 +11,26 @@
   <link rel="shortcut icon" href="images/favicon.png" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="Content-Language" content="es" />
-  <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+  <link rel="stylesheet" href="http://www.liedman.net/leaflet-control-geocoder/Control.Geocoder.css" />
+  <link rel="stylesheet" href="http://aratcliffe.github.io/Leaflet.contextmenu/dist/leaflet.contextmenu.css"/>
+
+
+    <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/lib/leaflet.iconlabel.css" />
+<!--    <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/index.css" /> -->
+
+  <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet-src.js"></script>
+  <script src="http://www.liedman.net/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+  <script src="http://www.liedman.net/leaflet-control-geocoder/Control.Geocoder.js"></script>
+  <script src="http://www.liedman.net/leaflet-routing-machine/lib/leaflet.iconlabel.js"></script>
+  <script src="http://aratcliffe.github.io/Leaflet.contextmenu/dist/leaflet.contextmenu.js"></script>
+
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/design.js"></script>
 
-  <script type="text/javascript" src="javascripts/context_menu.js"></script>
   <script type="text/javascript" src="javascripts/application.js"></script>
-  <script type="text/javascript" src="javascripts/jquery.contextmenu.r2.js"></script>
 
   <link rel="stylesheet" href="stylesheets/estilos.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold"  />
@@ -86,7 +99,7 @@
        <img class="pie" src="images/pie_form.png"/>
        
      </div>
-     
+<!--     
      <div class="estilos">
        <div class="oculta">
          <div class="control_estilos">
@@ -102,7 +115,7 @@
         <img class="pie_estilos" src="images/pie_estilos.png"/>
       </div>
      </div>
-     
+-->     
      <div id="map" class="mapa"></div>
      
      <div class="footer">

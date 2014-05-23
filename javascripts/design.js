@@ -9,6 +9,7 @@ $(document).ready(function() {
   $('.control_buscador .open').click(function(){
     $('.buscador').animate({marginLeft:"0px"},500,"swing");
     $('.wml-map-control').animate({marginLeft:"197px"},500,"swing");
+    $('.leaflet-control-zoom').animate({marginLeft:"197px"},500,"swing");
     $(this).hide();
     $('.control_buscador .close').show();
   });
@@ -16,6 +17,7 @@ $(document).ready(function() {
   $('.control_buscador .close').click(function(){
     $('.buscador').animate({marginLeft:"-197px"},500,"swing");
     $('.wml-map-control').animate({marginLeft:"0px"},500,"swing");
+    $('.leaflet-control-zoom').animate({marginLeft:"0px"},500,"swing");
     $(this).hide();
     $('.control_buscador .open').show();
   });    
