@@ -236,5 +236,6 @@ z-index: 1000 !important;
 	margin-left:0px;
 }
 .leaflet-routing-container.leaflet-bar.leaflet-control{
-	margin-top:70px;
+}
+.leaflet-control-layers.leaflet-control{
 }
