@@ -27,7 +27,13 @@ var OSM = (function() {
   function directions_menu_to (e) {
 		add_waypoint(1, e.latlng,"directions-menu-to");
       }
+  function zoomIn (e) {
+	      map.zoomIn();
+      }
 
+  function zoomOut (e) {
+	      map.zoomOut();
+      }
   function load_map() {
 		map = L.map('map',{
 			contextmenu: true,
@@ -38,7 +44,16 @@ var OSM = (function() {
 	      	},{
 		      text: 'directions-menu-to',
 		      callback: directions_menu_to
-	      	}],
+	      	},'-', {
+        text: 'Zoom in',
+        icon: 'images/zoom-in.png',
+        callback: zoomIn
+		}, {
+		    text: 'Zoom out',
+		    icon: 'images/zoom-out.png',
+		    callback: zoomOut
+		}
+		],
 		}).setView([-39.63953756436669, -71.279296875], 5);
 		geocoder = L.Control.Geocoder.nominatim();
 //		control_geocoder = L.Control.geocoder({
