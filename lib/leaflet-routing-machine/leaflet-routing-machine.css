@@ -1,5 +1,37 @@
-.leaflet-routing-container {
+.leaflet-routing-container-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+}
+
+.leaflet-routing-container-toggle{
+	width: 36px;
+	height: 36px;
+	background-color: white;
+	background-image: url(images/layers.png);
+    margin-left: auto;
+}
+.leaflet-routing-container-toggle-hidden{
+    visibility: hidden;
+}
+/*.leaflet-routing-container-list {
+	display: block;
+	position: relative;
+}*/
+
+.leaflet-routing-container-expanded .leaflet-routing-container-toggle {
+	/*display: none;*/
+}
+.leaflet-routing-container-expanded .leaflet-routing-container-list {
+	display: block;
+	position: relative;
+	width: 300px;
+	min-height: 36px;
+	background-color: white;
+}
+/*.leaflet-routing-container {
     width: 320px;
+	min-height: 36px;
     background-color: white;
     padding-top: 4px;
 }
@@ -12,15 +44,18 @@
     font-size: 12px;
     font-weight: normal;
 }
+*/
 
 .leaflet-routing-alt, .leaflet-routing-geocoders {
     padding: 6px;
     margin-top: 2px;
     margin-bottom: 6px;
     border-bottom: 1px solid #ccc;
-    max-height: 320px;
+    max-height: 200px;
     overflow-y: auto;
     transition: all 0.2s ease;
+
+	display: none;
 }
 
 .leaflet-bar .leaflet-routing-alt:last-child {
@@ -32,6 +67,9 @@
     max-height: 64px;
     overflow: hidden;
     cursor: pointer;
+}
+.leaflet-routing-container-expanded .leaflet-routing-alt {
+	display: block;
 }
 
 .leaflet-routing-alt table {

@@ -5,6 +5,30 @@
  * Check LICENCE-MIT and LICENSE-GPL for details.
  *
  **/
+
+L.Control.Button = L.Routing.Control.extend({
+  options: {
+    position: 'topright'
+  },
+  initialize: function (options) {
+	console.log("L.Control.Button initialize");
+    L.setOptions(this, options);
+
+	L.Routing.Control.prototype.initialize.call(this, options);
+  },
+
+  onAdd: function (map) {
+	console.log("L.Control.Button onAdd");
+    this._map = map;
+    var container = L.DomUtil.create('div', 'leaflet-control-button');
+	
+    this._container = container;
+	L.Routing.Control.prototype.onAdd.call(this, map);
+    
+    return this._container;
+  },
+});
+
 var OSM = (function() {
    
   var map;
@@ -24,9 +48,11 @@ var OSM = (function() {
   var marker;
   
   function directions_menu_from (e) {
+        console.log("directions_menu_from");
 		add_waypoint(0, e.latlng,'directions-menu-from');
       }
   function directions_menu_to (e) {
+        console.log("directions_menu_to");
 		add_waypoint(1, e.latlng,"directions-menu-to");
       }
   function zoomIn (e) {
@@ -57,7 +83,7 @@ var OSM = (function() {
 		    callback: zoomOut
 		}
 		],
-		}).setView([-39.63953756436669, -71.279296875], 5);
+		}).setView([-33.444047234512354, -70.64775466918945], 5);
 		geocoder = L.Control.Geocoder.nominatim();
 //		control_geocoder = L.Control.geocoder({
 //			geocoder: geocoder
@@ -73,6 +99,7 @@ var OSM = (function() {
   }  
   
   function add_waypoint(index, latlng, name) {
+    console.log(index,latlng,name);
 	waypoints[index] = latlng;
 	control_routing.setWaypoints(waypoints);
   }
@@ -109,9 +136,13 @@ var OSM = (function() {
     return query.replace(/^(.[^0-9]*)\s([0-9]+)(.*)$/, "$2, $1$3") + ", Chile";
   }
   function setup_routing() {
+/*	control_routing = new L.Control.Button()
+		.addTo(map);
+*/
+
 	control_routing = L.Routing.control({
 		waypoints: waypoints,
-//		geocoder: L.Control.Geocoder.nominatim(),
+		geocoder: L.Control.Geocoder.nominatim(),
 		plan: L.Routing.plan(null, {
 		    waypointIcon: function(i) {
 		        return new L.Icon.Label.Default({ labelText: String.fromCharCode(65 + i) });
@@ -119,6 +150,7 @@ var OSM = (function() {
 		})
 
 	}).addTo(map);
+
   }
   function reset_route() {
 //	waypoints = [];
@@ -146,6 +178,12 @@ var OSM = (function() {
 	"OpenMapSurfer.Roads": L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
 		attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 	}),
+
+	"http://santiago.pedaleable.org": L.tileLayer('http://b.tiles.mapbox.com/v3/ignacioabe.map-u0vknw7q/{z}/{x}/{y}.png', {
+	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	    maxZoom: 18
+	}),
+
   };
 function setup_styles() {
 	L.control.layers(styles).addTo(map);

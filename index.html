@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="http://aratcliffe.github.io/Leaflet.contextmenu/dist/leaflet.contextmenu.css"/>
 
 
-    <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="lib/leaflet-routing-machine/leaflet-routing-machine.css" />
     <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/lib/leaflet.iconlabel.css" />
 <!--    <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/index.css" /> -->
 
@@ -39,32 +39,20 @@
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold"  />
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
 
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+		}
+	</style>
+
 </head>
 <body>
   
    <div class="container">     
-     
-     <div class="menu">
-       <h1><img src="images/logotransparencia.gif" alt="OpenStreetMap Chile"></h1>
-       <div class="botones">
-           <a href="http://blog.openstreetmap.cl/">Blog</a>
-           <a href="http://lists.openstreetmap.org/listinfo/talk-cl">Lista</a>
-           <a href="http://wiki.openstreetmap.org/wiki/ES:Main_Page">Wiki</a>
-           <a href="http://www.openstreetmap.org/">OpenStreetMap<span class="org">.org</span></a>
-           <a href="http://www.openstreetmap.cl/comparacion/">Comparación</a>
-           <a href="#" id="permalink_edit">Editar</a>
-       </div>
-       <div class="controlador_header">
-         <div class="open">
-             <img src="images/open_header.png">
-         </div>   
-        
-         <div class="close">
-             <img src="images/close_header.png">
-         </div>   
-             
-       </div>
-     </div>
      
      <div class="buscador">
        
@@ -102,57 +90,9 @@
        <img class="pie" src="images/pie_form.png"/>
        
      </div>
-<!--     
-     <div class="estilos">
-       <div class="oculta">
-         <div class="control_estilos">
-             <img class="open" src="images/brocha.png"/>
-             <img class="close" src="images/brocha.png"/>
-             
-         </div>
-         <div class="listado">
-           <p><strong>Elige tu estilo</strong></p>
-           <form id="styles">      
-           </form>
-         </div>
-        <img class="pie_estilos" src="images/pie_estilos.png"/>
-      </div>
-     </div>
--->     
+   
      <div id="map" class="mapa"></div>
-     
-<!--     <div class="footer">
-     <a href="http://creativecommons.org/licenses/by-sa/2.0/" style="color:#ffffff;text-decoration:none;">(CC) BY-SA</a> 2010 OpenStreetMap Contributors. Tiles, Geocoding y Routing por <a href="http://cloudmade.com/">CloudMade</a>.<br/>
-    
-
-     </div>-->
-     
+          
    </div>
-  <!--anaytics --> 
-  
-   <script type="text/javascript">
-     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-   </script>
-   <script type="text/javascript">
-     try {
-       var pageTracker = _gat._getTracker("UA-992623-5");
-       pageTracker._trackPageview();
-         } catch(err) {}
-   </script>
-
-
-<!--
-  <div id="wrapper">
-    <div id="map"></div>
-  </div>
--->
-
-<div class="contextMenu" id="directions-menu">
-    <ul>
-      <li id="directions-menu-from"><img src="images/undo.png" />Desde aqu&iacute;</li>
-      <li id="directions-menu-to"><img src="images/redo.png" />Hasta aqu&iacute;</li>
-    </ul>
-  </div>
 </body>
 </html>
