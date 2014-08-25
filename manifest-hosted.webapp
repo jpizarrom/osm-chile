@@ -1,6 +1,6 @@
 {
   "name": "OSM Chile",
-  "description": "",
+  "description": "OSM Chile",
   "launch_path": "/osm-chile/index.html",
   "icons": {
     "128": "/img/icon-128.png"
