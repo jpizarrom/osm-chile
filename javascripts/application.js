@@ -83,7 +83,7 @@ var OSM = (function() {
 		    callback: zoomOut
 		}
 		],
-		}).setView([-33.444047234512354, -70.64775466918945], 5);
+		}).setView([-33.444047234512354, -70.64775466918945], 15);
 		geocoder = L.Control.Geocoder.nominatim();
 //		control_geocoder = L.Control.geocoder({
 //			geocoder: geocoder
@@ -99,7 +99,6 @@ var OSM = (function() {
   }  
   
   function add_waypoint(index, latlng, name) {
-    console.log(index,latlng,name);
 	waypoints[index] = latlng;
 	control_routing.setWaypoints(waypoints);
   }
@@ -150,6 +149,11 @@ var OSM = (function() {
 		})
 
 	}).addTo(map);
+
+$( "input:radio" ).click( function() {
+//    control_routing.setWaypoints(waypoints);
+    control_routing.spliceWaypoints(waypoints);
+});
 
   }
   function reset_route() {
