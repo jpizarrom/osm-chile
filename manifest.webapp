@@ -1,0 +1,16 @@
+{
+  "name": "OSM Chile",
+  "description": "",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Juan Pizarro",
+    "url": "http://droid.cl"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "es"
+}
