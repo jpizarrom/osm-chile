@@ -3,7 +3,7 @@
   "description": "OSM Chile",
   "launch_path": "/index.html",
   "icons": {
-    "128": "/img/icon-128.png"
+    "128": "/images/icon-128.png"
   },
   "developer": {
     "name": "Juan Pizarro",
