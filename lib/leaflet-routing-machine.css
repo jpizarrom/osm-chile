@@ -1,0 +1,45 @@
+.leaflet-routing-container {
+    background-color: none;
+}
+
+.leaflet-routing-container-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+}
+
+.leaflet-routing-container-toggle{
+	width: 36px;
+	height: 36px;
+	background-color: white;
+	background-image: url(images/layers.png);
+    margin-left: auto;
+}
+.leaflet-routing-container-toggle-hidden{
+    visibility: hidden;
+}
+/*.leaflet-routing-container-list {
+	display: block;
+	position: relative;
+}*/
+
+.leaflet-routing-container-expanded .leaflet-routing-container-toggle {
+	/*display: none;*/
+}
+.leaflet-routing-container-expanded .leaflet-routing-container-list {
+	display: block;
+	position: relative;
+	width: 300px;
+	min-height: 36px;
+	background-color: white;
+}
+.leaflet-routing-container-expanded .leaflet-routing-alt {
+	display: block;
+}
+.leaflet-routing-alt, .leaflet-routing-geocoders {
+    max-height: 200px;
+	display: none;
+}
+.leaflet-routing-alt-minimized {
+    max-height: 70px;
+}

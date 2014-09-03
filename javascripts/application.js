@@ -139,7 +139,7 @@ var OSM = (function() {
 		.addTo(map);
 */
 
-	control_routing = L.Routing.control({
+	control_routing = L.Routing.controlm({
 		waypoints: waypoints,
 		geocoder: L.Control.Geocoder.nominatim(),
 		plan: L.Routing.plan(null, {
