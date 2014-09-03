@@ -146,7 +146,8 @@ var OSM = (function() {
 		    waypointIcon: function(i) {
 		        return new L.Icon.Label.Default({ labelText: String.fromCharCode(65 + i) });
 		    }
-		})
+		}),
+		router: L.Routing.osrmm()
 
 	}).addTo(map);
 
