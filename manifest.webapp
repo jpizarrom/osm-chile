@@ -12,5 +12,10 @@
   "installs_allowed_from": [
     "*"
   ],
-  "default_locale": "es"
+  "default_locale": "es",
+  "permissions": {
+    "geolocation":{ 
+      "description": "Required for autocompletion in the share screen"
+    }
+  }
 }
