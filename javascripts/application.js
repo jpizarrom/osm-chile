@@ -38,10 +38,13 @@ var OSM = (function() {
   
   function init() {
 	load_map();
+	new L.Control.Locate({ position: 'topright' }).addTo(map);
     setup_search();
     setup_styles();
     setup_routing();
     new L.Control.Zoom({ position: 'topright' }).addTo(map);
+//    new L.Control.Locate({ position: 'topright' }).addTo(map);
+
   }
 
   var directions = null;
