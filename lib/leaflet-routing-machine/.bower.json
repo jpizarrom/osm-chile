@@ -1,0 +1,14 @@
+{
+  "name": "leaflet-routing-machine",
+  "homepage": "https://github.com/perliedman/leaflet-routing-machine",
+  "version": "1.0.0",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0",
+    "commit": "c2eca6e24b1e712f50f2099e21207876249ff0c3"
+  },
+  "_source": "git://github.com/perliedman/leaflet-routing-machine.git",
+  "_target": "~1.0.0",
+  "_originalSource": "leaflet-routing-machine"
+}
