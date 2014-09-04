@@ -1,0 +1,24 @@
+{
+  "name": "osm-chile",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jpizarrom/osm-chile",
+  "authors": [
+    "Juan Pizarro <jpizarrom@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "leaflet-control-geocoder": "~0.2.1",
+    "leaflet-routing-machine": "~1.0.0",
+    "Leaflet.contextmenu": "*",
+    "leaflet": "~0.7.3",
+    "Leaflet.iconlabel": "jacobtoye/Leaflet.iconlabel"
+  }
+}

@@ -68,10 +68,10 @@ var OSM = (function() {
 			contextmenu: true,
 			contextmenuWidth: 140,
 			contextmenuItems: [{
-		      text: 'directions-menu-from',
+		      text: 'Desde',
 		      callback: directions_menu_from
 	      	},{
-		      text: 'directions-menu-to',
+		      text: 'Hasta',
 		      callback: directions_menu_to
 	      	},'-', {
         text: 'Zoom in',
