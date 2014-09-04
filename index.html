@@ -14,23 +14,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="lib/leaflet-control-geocoder/Control.Geocoder.css" />
   <link rel="stylesheet" href="lib/Leaflet.contextmenu/dist/leaflet.contextmenu.css"/>
 
 
     <link rel="stylesheet" href="lib/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
-    <link rel="stylesheet" href="lib/leaflet-routing-machine.css" />
     <link rel="stylesheet" href="lib/Leaflet.iconlabel/dist/leaflet.iconlabel.css" />
-<!--    <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/index.css" /> -->
 
   <script src="lib/leaflet/dist/leaflet-src.js"></script>
 
+  <script src="lib/leaflet-control-geocoder/Control.Geocoder.js"></script>
+
   <script src="lib/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  
+  <script src="lib/Control.Geocoder.js"></script>
   <script src="lib/leaflet-routing-machine.js"></script>
 
-  <script src="lib//leaflet-control-geocoder/Control.Geocoder.js"></script>
   <script src="lib/Leaflet.iconlabel/dist/leaflet.iconlabel.js"></script>
-  <script src="lib//Leaflet.contextmenu/dist/leaflet.contextmenu.js"></script>
+  <script src="lib/Leaflet.contextmenu/dist/leaflet.contextmenu.js"></script>
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/design.js"></script>
@@ -53,13 +53,14 @@
 
 </head>
 <body>
-  
+<!--  
    <div class="container">     
      
      <div class="buscador">
        
        <div class="formulario">
          <p>Busqueda</p>
+         <div id="search_geo"></div>
          <form id="search">
          <input type="search" placeholder="Ingresa aqui tu busqueda" name="busqueda" value="" id="query"/>
          <input type="submit" value="buscar" name="busqueda" class="boton"/>
@@ -96,7 +97,7 @@
        <img class="pie" src="images/pie_form.png"/>
        
      </div>
-   
+-->   
      <div id="map" class="mapa"></div>
           
    </div>

@@ -41,6 +41,7 @@ var OSM = (function() {
     setup_search();
     setup_styles();
     setup_routing();
+    new L.Control.Zoom({ position: 'topright' }).addTo(map);
   }
 
   var directions = null;
@@ -83,11 +84,20 @@ var OSM = (function() {
 		    callback: zoomOut
 		}
 		],
+		zoomControl: false,
 		}).setView([-33.444047234512354, -70.64775466918945], 15);
-		geocoder = L.Control.Geocoder.nominatim();
-//		control_geocoder = L.Control.geocoder({
-//			geocoder: geocoder
-//		}).addTo(map);
+
+//		geocoder = L.Control.Geocoder.nominatim();
+/*		
+		control_geocoder = L.Control.geocoderm({
+			geocoder: geocoder,
+			waypoint_position: 0,
+		}).addTo(map);
+		control_geocoder = L.Control.geocoderm({
+			geocoder: geocoder,
+			waypoint_position: 1,
+		}).addTo(map);
+*/
 
 		var marker;
 
@@ -194,7 +204,8 @@ function setup_styles() {
 	L.control.layers(styles).addTo(map);
   }
   return {
-    init: init
+    init: init,
+    add_waypoint: add_waypoint
   };
 })();
 
