@@ -5,140 +5,138 @@
  * Check LICENCE-MIT and LICENSE-GPL for details.
  *
  **/
+
+L.Control.Button = L.Routing.Control.extend({
+  options: {
+    position: 'topright'
+  },
+  initialize: function (options) {
+	console.log("L.Control.Button initialize");
+    L.setOptions(this, options);
+
+	L.Routing.Control.prototype.initialize.call(this, options);
+  },
+
+  onAdd: function (map) {
+	console.log("L.Control.Button onAdd");
+    this._map = map;
+    var container = L.DomUtil.create('div', 'leaflet-control-button');
+	
+    this._container = container;
+	L.Routing.Control.prototype.onAdd.call(this, map);
+    
+    return this._container;
+  },
+});
+
 var OSM = (function() {
-  
-  var KEY = 'E282E0EA16754AFB98173BF9A17CF874';
-  
+   
   var map;
+  var geocoder;
+  var control_geocoder;
+  var control_routing;
   
   function init() {
-    load_map();
+	load_map();
+	new L.Control.Locate({ position: 'topright' }).addTo(map);
     setup_search();
     setup_styles();
-    reset_route();
-    
-    $('#permalink_edit').click(function() {
-        var langlot = map.getCenter()
-        var longitud = langlot.lng()
-        var latitud = langlot.lat()
-        var zoom = map.getZoom()
-        //console.log(longitud + ' ' + latitud + ' ' + zoom)
-        var url = 'http://www.openstreetmap.org/edit.html?zoom=' + zoom + '&lat=' + latitud + '&lon=' + longitud;
-        window.location = url
-    });
-    
-    // var layer = new CM.Tiles.CloudMade.Mobile({ key: KEY });
-    // map.setTileLayer(layer);
-    
+    setup_routing();
+    new L.Control.Zoom({ position: 'topright' }).addTo(map);
+//    new L.Control.Locate({ position: 'topright' }).addTo(map);
+
   }
-  
-  var mouseX, mouseY;
+
   var directions = null;
   var waypoints = [];
-  var markers = [];
+  var marker;
   
-  function load_map() {
-    map = new CM.Map('map', styles[0].tiles);
-    map.setCenter(new CM.LatLng(-39.63953756436669, -71.279296875), 4);
-    
-    directions = new CM.Directions(map, 'panel', KEY);
-    CM.Event.addListener(directions, 'load', function() {
-        // Keep waypoints in sync after directions changes,
-        // for example, when directions are changed by dragging
-        // the source or destination marker:
-        waypoints = [directions.getMarker(0).getLatLng(),
-                     directions.getMarker(1).getLatLng()];
-    });
-    var controlPoss = new CM.ControlPosition(CM.TOP_LEFT, new CM.Size(4, 115));
-
-    // Controls
-    map.addControl(new CM.LargeMapControl(), controlPoss);
-    //map.addControl(new CM.ScaleControl());
-    // map.addControl(new CM.OverviewMapControl());
-    
-    $('#map').contextMenu('directions-menu', {
-      bindings: {
-        'directions-menu-from': function(t) {
-          add_waypoint(0, mouseX, mouseY);
-        },
-        'directions-menu-to': function(t) {
-          add_waypoint(1, mouseX, mouseY);
-        }
-      },
-      
-      onContextMenu: function(e) {
-        maps = $('#map')
-        var x = e.pageX - maps.offset().left;
-        var y = e.pageY - maps.offset().top;
-
-        mouseX = x
-        mouseY = y
-        return true
+  function directions_menu_from (e) {
+        console.log("directions_menu_from");
+		add_waypoint(0, e.latlng,'directions-menu-from');
       }
-    });
-  }
+  function directions_menu_to (e) {
+        console.log("directions_menu_to");
+		add_waypoint(1, e.latlng,"directions-menu-to");
+      }
+  function zoomIn (e) {
+	      map.zoomIn();
+      }
+
+  function zoomOut (e) {
+	      map.zoomOut();
+      }
+  function load_map() {
+		map = L.map('map',{
+			layers: [styles["OSM Foundation"]],
+			contextmenu: true,
+			contextmenuWidth: 140,
+			contextmenuItems: [{
+		      text: 'Desde',
+		      callback: directions_menu_from
+	      	},{
+		      text: 'Hasta',
+		      callback: directions_menu_to
+	      	},'-', {
+        text: 'Zoom in',
+        icon: 'images/zoom-in.png',
+        callback: zoomIn
+		}, {
+		    text: 'Zoom out',
+		    icon: 'images/zoom-out.png',
+		    callback: zoomOut
+		}
+		],
+		zoomControl: false,
+		}).setView([-33.444047234512354, -70.64775466918945], 15);
+
+//		geocoder = L.Control.Geocoder.nominatim();
+/*		
+		control_geocoder = L.Control.geocoderm({
+			geocoder: geocoder,
+			waypoint_position: 0,
+		}).addTo(map);
+		control_geocoder = L.Control.geocoderm({
+			geocoder: geocoder,
+			waypoint_position: 1,
+		}).addTo(map);
+*/
+
+		var marker;
+
+/*	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+*/
+
+  }  
   
-  function add_waypoint(index, mouseX, mouseY) {
-    var p = new CM.Point(mouseX, mouseY);
-    var latlng = map.fromContainerPixelToLatLng(p);
-    waypoints[index] = latlng;
-    update_route();
-    directions.getMarker(index).show();
-  }
-
-  function add_marker(marker) {
-    map.addOverlay(marker);
-    markers.push(marker);
-  }
-
-  function update_route() {
-    directions.loadFromWaypoints(waypoints, {
-      travelMode: $('#travel-mode input:checked').attr('value'),
-      draggableWaypoints: true
-    });
-  }
-  
-  function reset_route() {
-    waypoints = [new CM.LatLng(0, 0), new CM.LatLng(0, 0)];
-    update_route();
-    directions.getMarker(0).hide();
-    directions.getMarker(1).hide();
-    $("#directions-menu-from").show();
-    $("#directions-menu-to").hide();
-  }
-
-  function reset_markers() {
-    for (var i = 0; i < markers.length; i++) map.removeOverlay(markers[i]);
-    markers = [];
+  function add_waypoint(index, latlng, name) {
+	waypoints[index] = latlng;
+	control_routing.setWaypoints(waypoints);
   }
   
   $(function() {
-    $('#travel-mode input').change(update_route);
+//    $('#travel-mode input').change(update_route);
   });
   
   function setup_search() {
     $('#search').submit(function() {
       var query = to_cloudmade_query($('#query').attr('value'));
-      var geocoder = new CM.Geocoder(KEY);
-      reset_route();
-      reset_markers();
-      geocoder.getLocations(query, function(response) {
-        if (!response.bounds) return;
-        
-      	var southWest = new CM.LatLng(response.bounds[0][0], response.bounds[0][1]),
-      	northEast = new CM.LatLng(response.bounds[1][0], response.bounds[1][1]);
-
-      	map.zoomToBounds(new CM.LatLngBounds(southWest, northEast));
-
-      	for (var i = 0; i < response.features.length; i++) {
-          var coords = response.features[i].centroid.coordinates,
-          latlng = new CM.LatLng(coords[0], coords[1]);
-          var marker = new CM.Marker(latlng, {
-            title: response.features[i].properties.name
-          });
-          add_marker(marker);
-      	}
-      }, { bounds: map.getBounds() });
+	  reset_route();
+	  geocoder.geocode(query, function(results) {
+		if (!results) return;
+		if (results.length==0) return;
+		result=results[0];
+		map.fitBounds(result.bbox);
+		if (marker) {
+			map.removeLayer(marker);
+		}
+		marker = new L.Marker(result.center)
+			.bindPopup(result.name)
+			.addTo(map)
+			.openPopup();
+	  });
       return false;
     });
   }
@@ -149,72 +147,68 @@ var OSM = (function() {
     // "Cirujano Guzman 25, Providencia" => "25, Cirujano Guzman, Providencia, Chile"
     return query.replace(/^(.[^0-9]*)\s([0-9]+)(.*)$/, "$2, $1$3") + ", Chile";
   }
+  function setup_routing() {
+/*	control_routing = new L.Control.Button()
+		.addTo(map);
+*/
 
-  function setup_right_click() {
-    CM.Event.addListener(map, 'rightclick', function(latlng) {
-    	//alert("You have clicked the map at " + latlng.toString(4));
-    });
+	control_routing = L.Routing.controlm({
+		waypoints: waypoints,
+		geocoder: L.Control.Geocoder.nominatim(),
+		plan: L.Routing.plan(null, {
+		    waypointIcon: function(i) {
+		        return new L.Icon.Label.Default({ labelText: String.fromCharCode(65 + i) });
+		    }
+		}),
+		router: L.Routing.osrmm()
+
+	}).addTo(map);
+
+$( "input:radio" ).click( function() {
+//    control_routing.setWaypoints(waypoints);
+    control_routing.spliceWaypoints(waypoints);
+});
+
   }
-  
-  var context_menu;
-  
-  var styles = [
-    {
-      name: 'OSM Chile',
-      tiles: new CM.Tiles.CloudMade.Web({key: KEY, styleId: 1823 })
-    },
-    {
-      name: 'OSM Foundation',
-      tiles: new CM.Tiles.OpenStreetMap.Mapnik()
-    },
-    {
-      name: 'OpenCycleMap',
-      tiles: new CM.Tiles.OpenStreetMap.Cycle()
-    },
-    {
-    name: 'NoNames',
-      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 3 } )
-    },
-    {
-    name: 'Fresh',
-      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 997 } )
-    },
-    {
-      name: 'Mobile',
-      tiles: new CM.Tiles.CloudMade.Mobile( { key: KEY } )
-    },
-    {
-    name: 'Tourist',
-      tiles: new CM.Tiles.CloudMade.Web({key: KEY, styleId: 7 })
-    },
-    {
-    name: 'Midnight Commander',
-      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 999 } )
-    },
-    {
-    name: 'Pale Dawn',
-      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 998 } )
-    },
-    {
-    name: 'Red Alert',
-      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 8 } )
-    }
-  ];
-  
-  function setup_styles() {
-    $.each(styles, function(i) {
-      $('#styles').append('<span class="estilo"><input name="style" type="radio" id="style-'+
-      i+'" value="'+i+'"><label for="style-'+i+'">'+
-      this.name + '</label></span>');
-    })
-    
-    $('#style-0').attr('checked', true)
-    $('#styles input').change(function() {
-      map.setTileLayer( styles[this.value].tiles );
-    });
+  function reset_route() {
+//	waypoints = [];
+//	control_routing.setWaypoints(waypoints);
+  }
+  var styles = {
+	"OSM Foundation": L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	    maxZoom: 18
+	}),
+
+	"OpenCycleMap": L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+	}),
+
+	"MapQuestOpen.OSM": L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
+		attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: '1234'
+	}),
+
+	"Thunderforest.Transport": L.tileLayer('http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+	}),
+
+	"OpenMapSurfer.Roads": L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
+		attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+	}),
+
+	"http://santiago.pedaleable.org": L.tileLayer('http://b.tiles.mapbox.com/v3/ignacioabe.map-u0vknw7q/{z}/{x}/{y}.png', {
+	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	    maxZoom: 18
+	}),
+
+  };
+function setup_styles() {
+	L.control.layers(styles).addTo(map);
   }
   return {
-    init: init
+    init: init,
+    add_waypoint: add_waypoint
   };
 })();
 

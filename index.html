@@ -11,49 +11,60 @@
   <link rel="shortcut icon" href="images/favicon.png" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="Content-Language" content="es" />
-  <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="lib/Leaflet.contextmenu/dist/leaflet.contextmenu.css"/>
+
+
+    <link rel="stylesheet" href="lib/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="lib/Leaflet.iconlabel/dist/leaflet.iconlabel.css" />
+
+  <link rel="stylesheet" href="lib/leaflet.locatecontrol/src/L.Control.Locate.css" />
+
+  <script src="lib/leaflet/dist/leaflet-src.js"></script>
+
+  <script src="lib/leaflet-control-geocoder/Control.Geocoder.js"></script>
+
+  <script src="lib/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  
+  <script src="lib/Control.Geocoder.js"></script>
+  <script src="lib/leaflet-routing-machine.js"></script>
+
+  <script src="lib/leaflet.locatecontrol/src/L.Control.Locate.js"></script>
+
+  <script src="lib/Leaflet.iconlabel/dist/leaflet.iconlabel.js"></script>
+  <script src="lib/Leaflet.contextmenu/dist/leaflet.contextmenu.js"></script>
+
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/design.js"></script>
 
-  <script type="text/javascript" src="javascripts/context_menu.js"></script>
   <script type="text/javascript" src="javascripts/application.js"></script>
-  <script type="text/javascript" src="javascripts/jquery.contextmenu.r2.js"></script>
 
   <link rel="stylesheet" href="stylesheets/estilos.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold"  />
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
 
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+		}
+	</style>
+
 </head>
 <body>
-  
+<!--  
    <div class="container">     
-     
-     <div class="menu">
-       <h1><img src="images/logotransparencia.gif" alt="OpenStreetMap Chile"></h1>
-       <div class="botones">
-           <a href="http://blog.openstreetmap.cl/">Blog</a>
-           <a href="http://lists.openstreetmap.org/listinfo/talk-cl">Lista</a>
-           <a href="http://wiki.openstreetmap.org/wiki/ES:Main_Page">Wiki</a>
-           <a href="http://www.openstreetmap.org/">OpenStreetMap<span class="org">.org</span></a>
-           <a href="http://www.openstreetmap.cl/comparacion/">Comparación</a>
-           <a href="#" id="permalink_edit">Editar</a>
-       </div>
-       <div class="controlador_header">
-         <div class="open">
-             <img src="images/open_header.png">
-         </div>   
-        
-         <div class="close">
-             <img src="images/close_header.png">
-         </div>   
-             
-       </div>
-     </div>
      
      <div class="buscador">
        
        <div class="formulario">
          <p>Busqueda</p>
+         <div id="search_geo"></div>
          <form id="search">
          <input type="search" placeholder="Ingresa aqui tu busqueda" name="busqueda" value="" id="query"/>
          <input type="submit" value="buscar" name="busqueda" class="boton"/>
@@ -72,6 +83,10 @@
              <input name="travel-mode" id="travel-bicycle" type="radio" value="bicycle">
              <label for="travel-bicycle"><img src="images/bici.png" name="rutas en bici"></label>
            </span>
+           <span class="campo">
+             <input name="travel-mode" id="travel-carosrm" type="radio" value="carosrm">
+             <label for="travel-carosrm"><img src="images/auto.png" name="rutas en auto"></label>
+           </span>
          </div>
          
          
@@ -86,57 +101,9 @@
        <img class="pie" src="images/pie_form.png"/>
        
      </div>
-     
-     <div class="estilos">
-       <div class="oculta">
-         <div class="control_estilos">
-             <img class="open" src="images/brocha.png"/>
-             <img class="close" src="images/brocha.png"/>
-             
-         </div>
-         <div class="listado">
-           <p><strong>Elige tu estilo</strong></p>
-           <form id="styles">      
-           </form>
-         </div>
-        <img class="pie_estilos" src="images/pie_estilos.png"/>
-      </div>
-     </div>
-     
+-->   
      <div id="map" class="mapa"></div>
-     
-     <div class="footer">
-     <a href="http://creativecommons.org/licenses/by-sa/2.0/" style="color:#ffffff;text-decoration:none;">(CC) BY-SA</a> 2010 OpenStreetMap Contributors. Tiles, Geocoding y Routing por <a href="http://cloudmade.com/">CloudMade</a>.<br/>
-    
-
-     </div>
-     
+          
    </div>
-  <!--anaytics --> 
-  
-   <script type="text/javascript">
-     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-   </script>
-   <script type="text/javascript">
-     try {
-       var pageTracker = _gat._getTracker("UA-992623-5");
-       pageTracker._trackPageview();
-         } catch(err) {}
-   </script>
-
-
-<!--
-  <div id="wrapper">
-    <div id="map"></div>
-  </div>
--->
-
-<div class="contextMenu" id="directions-menu">
-    <ul>
-      <li id="directions-menu-from"><img src="images/undo.png" />Desde aqu&iacute;</li>
-      <li id="directions-menu-to"><img src="images/redo.png" />Hasta aqu&iacute;</li>
-    </ul>
-  </div>
 </body>
 </html>

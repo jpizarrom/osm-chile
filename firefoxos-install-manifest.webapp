@@ -1,0 +1,9 @@
+{
+    "name": "OSM Chile",
+    "package_path" : "https://github.com/jpizarrom/osm-chile/archive/gh-pages.zip",
+    "version": "1",
+    "developer": {
+        "name": "Juan Pizarro",
+        "url": "http://droid.cl"
+    }
+}

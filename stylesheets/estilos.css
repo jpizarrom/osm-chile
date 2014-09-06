@@ -144,6 +144,7 @@ img{
         background-repeat:no-repeat;
         width:31px;
         float:right;
+/*		z-index:1;*/
       }
       
       .close{
@@ -230,3 +231,46 @@ z-index: 1000 !important;
   /* We are showing our own localized copyright */
   display: none !important;
 }
+/*
+.leaflet-control-zoom.leaflet-bar.leaflet-control{
+	margin-top:110px;
+	margin-left:0px;
+}
+*/
+.leaflet-routing-container.leaflet-bar.leaflet-control{
+}
+.leaflet-control-layers.leaflet-control{
+}
+.leaflet-routing-container {
+  max-width: 90%;
+}
+.leaflet-routing-alt, .leaflet-routing-geocoders {
+    padding: 2px;
+    max-height: 200px;
+    margin: 0px;
+}
+.leaflet-routing-alt-minimized {
+    max-height: 40px;
+}
+
+.leaflet-routing-geocoders.leaflet-routing-navmode{
+  display: none;
+}
+
+.leaflet-routing-container.leaflet-routing-navmode{
+  margin-top: 50%;
+}
+
+.leaflet-routing-navmode .leaflet-routing-alt{
+    padding: 2px;
+    max-height: 200px;
+    margin: 0px;
+}
+.leaflet-routing-navmode .leaflet-routing-alt-minimized {
+    max-height: 40px;
+}
+
+.leaflet-routing-hide {
+  display: none;
+}
+
