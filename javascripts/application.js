@@ -6,24 +6,34 @@
  *
  **/
 
-L.Control.Button = L.Routing.Control.extend({
+L.Control.Header = L.Control.extend({
   options: {
-    position: 'topright'
+    position: 'topleft'
   },
   initialize: function (options) {
 	console.log("L.Control.Button initialize");
     L.setOptions(this, options);
-
-	L.Routing.Control.prototype.initialize.call(this, options);
   },
 
   onAdd: function (map) {
 	console.log("L.Control.Button onAdd");
     this._map = map;
-    var container = L.DomUtil.create('div', 'leaflet-control-button');
+    var container = L.DomUtil.create('div','menu');
+
+    var bar = (function () {/*
+	<h1><img src="images/logotransparencia.gif" alt="OpenStreetMap Chile"></h1>
+	<div class="botones">
+	<a href="http://blog.openstreetmap.cl/">Blog</a>
+	<a href="http://lists.openstreetmap.org/listinfo/talk-cl">Lista</a>
+	<a href="http://wiki.openstreetmap.org/wiki/ES:Main_Page">Wiki</a>
+	<a href="http://www.openstreetmap.org/">OpenStreetMap<span class="org">.org</span></a>
+	<a href="http://www.openstreetmap.cl/comparacion/">Comparación</a>
+	<a href="#" id="permalink_edit">Editar</a>
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+
+    container.innerHTML = bar;
 	
     this._container = container;
-	L.Routing.Control.prototype.onAdd.call(this, map);
     
     return this._container;
   },
@@ -38,6 +48,7 @@ var OSM = (function() {
   
   function init() {
 	load_map();
+	new L.Control.Header().addTo(map);
 	new L.Control.Locate({ position: 'topright' }).addTo(map);
     setup_search();
     setup_styles();
