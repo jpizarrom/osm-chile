@@ -89,7 +89,7 @@ img{
 }
 
 @media only screen 
-and (max-device-width : 640px) {
+and (max-device-width : 640px) and (max-width : 640px)  {
 .menu .botones{
      display:none;
 }
@@ -120,14 +120,14 @@ and (max-device-width : 640px) {
 }
 
 @media only screen 
-and (min-device-width : 640px) {
+and (min-device-width : 640px) and (min-width : 640px) {
   .nav-mode{
     display: none;
   }
 }
 
 @media only screen 
-and (max-device-width : 640px) {
+and (max-device-width : 640px) and (max-width : 640px) {
 /*
   .leaflet-routing-container {
     height: 150px;
