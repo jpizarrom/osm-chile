@@ -166,7 +166,7 @@ var OSM = (function() {
 	control_routing = L.Routing.controlm({
 		waypoints: waypoints,
 		geocoder: L.Control.Geocoder.nominatim(),
-		plan: L.Routing.plan(null, {
+		plan: L.Routing.planm(null, {
 		    waypointIcon: function(i) {
 		        return new L.Icon.Label.Default({ labelText: String.fromCharCode(65 + i) });
 		    }
