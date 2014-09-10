@@ -120,7 +120,10 @@ img{
   }
   */
 
-
+  span.nav-mode{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
   .leaflet-routing-geocoders.leaflet-routing-navmode{
     display: none;
@@ -144,6 +147,9 @@ img{
     max-height: 40px;
 }
 .leaflet-routing-hide .leaflet-routing-geocoders, .leaflet-routing-hide .leaflet-routing-alt  {
+  display: none;
+}
+.leaflet-routing-hide.leaflet-routing-navmode .leaflet-routing-geocoders, .leaflet-routing-hide.leaflet-routing-navmode .leaflet-routing-alt  {
   display: none;
 }
 .leaflet-bar a, .leaflet-bar a:hover {
