@@ -48,8 +48,8 @@ var OSM = (function() {
   
   function init() {
 	load_map();
-	new L.Control.Header().addTo(map);
-	new L.Control.Locate({ position: 'topright' }).addTo(map);
+//	new L.Control.Header().addTo(map);
+//	new L.Control.Locate({ position: 'topright' }).addTo(map);
     setup_search();
     setup_styles();
     setup_routing();
