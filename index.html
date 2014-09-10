@@ -57,53 +57,24 @@
 
 </head>
 <body>
-<!--  
-   <div class="container">     
-     
-     <div class="buscador">
-       
-       <div class="formulario">
-         <p>Busqueda</p>
-         <div id="search_geo"></div>
-         <form id="search">
-         <input type="search" placeholder="Ingresa aqui tu busqueda" name="busqueda" value="" id="query"/>
-         <input type="submit" value="buscar" name="busqueda" class="boton"/>
-         <p>Ruta</p>
-         <div class="seleccion" id="travel-mode">
-           selecciona el tipo de ruta<br/>
-           <span class="campo">
-             <input name="travel-mode" id="travel-foot" type="radio" value="foot">
-             <label for="travel-foot"><img src="images/apie.png" name="rutas a pie"></label>
-           </span>
-           <span class="campo">
-             <input name="travel-mode" id="travel-car" type="radio" value="car" checked="checked">
-             <label for="travel-car"><img src="images/auto.png" name="rutas en auto"></label>
-           </span>
-           <span class="campo">
-             <input name="travel-mode" id="travel-bicycle" type="radio" value="bicycle">
-             <label for="travel-bicycle"><img src="images/bici.png" name="rutas en bici"></label>
-           </span>
-           <span class="campo">
-             <input name="travel-mode" id="travel-carosrm" type="radio" value="carosrm">
-             <label for="travel-carosrm"><img src="images/auto.png" name="rutas en auto"></label>
-           </span>
-         </div>
-         
-         
-         </form>
-       </div>
-       
-       <div class="control_buscador">
-           <img class="open" src="images/lupa.png"/>
-           <img class="close" src="images/lupa.png"/>
-       </div>
-       
-       <img class="pie" src="images/pie_form.png"/>
-       
-     </div>
--->   
-     <div id="map" class="mapa"></div>
-          
-   </div>
+  <header id="header">
+    <div class="menu">
+      <h1>
+        <a>
+<!--          <img src="images/logotransparencia.gif" alt="OpenStreetMap Chile">-->
+        </a>
+      </h1>
+      <div class="botones">
+      <a href="http://blog.openstreetmap.cl/">Blog</a>
+      <a href="http://lists.openstreetmap.org/listinfo/talk-cl">Lista</a>
+      <a href="http://wiki.openstreetmap.org/wiki/ES:Main_Page">Wiki</a>
+      <a href="http://www.openstreetmap.org/">OpenStreetMap<span class="org">.org</span></a>
+      <a href="http://www.openstreetmap.cl/comparacion/">Comparación</a>
+      <a href="#" id="permalink_edit">Editar</a>
+    </div>
+  </header>  
+  
+  <div id="map" class="mapa"></div>
+
 </body>
 </html>
