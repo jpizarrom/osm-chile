@@ -197,10 +197,19 @@ img{
 @media only screen 
 and (min-device-width : 640px) and (min-width : 640px) {
 
-  .leaflet-routing-container {
+  .leaflet-left{
+    height: 100%;
   }
-
-  .leaflet-routing-alt, .leaflet-routing-geocoders {
+  .leaflet-map-pane{
+    margin-left: 13%;
+  }
+  .leaflet-routing-container {
+    height: 100%;
+  }
+  .leaflet-routing-alt {
+    max-height: 65%;
+  }
+  .leaflet-routing-geocoders {
     max-height: 200px;
   }
   .leaflet-routing-container.leaflet-routing-navmode{
