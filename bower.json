@@ -16,9 +16,9 @@
   ],
   "dependencies": {
     "leaflet-control-geocoder": "~0.2.1",
-    "leaflet-routing-machine": "~1.0.0",
+    "leaflet-routing-machine": "~3.0.3",
     "Leaflet.contextmenu": "*",
-    "leaflet": "~0.7.3",
+    "leaflet": "~0.7.5",
     "Leaflet.iconlabel": "jacobtoye/Leaflet.iconlabel",
     "leaflet.locatecontrol": "jpizarrom/leaflet-locatecontrol#dev"
   }
